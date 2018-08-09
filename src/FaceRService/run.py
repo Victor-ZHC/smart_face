@@ -33,13 +33,16 @@ def random_number():
 @app.route("/upload", methods=['post', 'get'])
 def upload():
     f = request.files['file']
-    '''print("================f.filename: "+f.filename+"===============")
+    print("================f.filename: "+f.filename+"===============")
     if not os.path.isdir('./images'):
         os.mkdir('./images')
     path = './images/'+f.filename
-    f.save(path)
-    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'gender': 'FeMale', 'age': 25})'''
-    return jsonify(face_detect.detect(f))
+    buffer=f.read()
+    outf=open(path,'wb')
+    outf.write(buffer)
+    outf.close()
+    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'res':face_detect.detect(buffer)})
+    #return jsonify(face_detect.detect(f))
 
 
 @app.route('/images/<filename>', methods=['GET'])

@@ -7,13 +7,13 @@ import cv2
 slim = tf.contrib.slim
 
 image_size = 224
-train_dir = './ckpt/mobilenet_age'
+train_dir = '../inference/ckpt/mobilenet_age'
 
-def infer_age(img_dir):
+def infer_age(np_img):
     with tf.Graph().as_default():
         tf.logging.set_verbosity(tf.logging.INFO)
 
-        np_img = cv2.imread(img_dir, cv2.IMREAD_COLOR)
+        #np_img = cv2.imread(img_dir, cv2.IMREAD_COLOR)
         img_tensor = tf.convert_to_tensor(np_img)
         img_tensor = tf.expand_dims(img_tensor, 0)
         processed_images = simple_prerpocess.preprocess_image(img_tensor, image_size, image_size)
@@ -24,6 +24,7 @@ def infer_age(img_dir):
         predictions = tf.reduce_mean(logits, 1)
 
         checkpoint_path = tf.train.latest_checkpoint(train_dir)
+        print(checkpoint_path)
         init_fn = slim.assign_from_checkpoint_fn(
               checkpoint_path,
               slim.get_variables_to_restore())

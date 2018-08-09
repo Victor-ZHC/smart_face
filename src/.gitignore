@@ -8,6 +8,7 @@
 ./FaceRWeb/npm-debug.log*
 ./FaceRWeb/yarn-debug.log*
 ./FaceRWeb/yarn-error.log*
+FaceRService/images*
 
 # Editor directories and files
 ./FaceRWeb/.idea

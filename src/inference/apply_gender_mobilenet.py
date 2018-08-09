@@ -2,17 +2,18 @@ import tensorflow as tf
 from nets import mobilenet_v1
 from preprocess import simple_prerpocess
 import cv2
+import numpy as np
 
 slim = tf.contrib.slim
 
 image_size = 224
-train_dir = './ckpt/mobilenet_gender'
+train_dir = '../inference/ckpt/mobilenet_gender'
 
-def infer_gender(img_dir):
+def infer_gender(np_img):
     with tf.Graph().as_default():
         tf.logging.set_verbosity(tf.logging.INFO)
 
-        np_img = cv2.imread(img_dir, cv2.IMREAD_COLOR)
+        #np_img = cv2.imread(img_dir, cv2.IMREAD_COLOR)
         print(np_img.shape)
         img_tensor = tf.convert_to_tensor(np_img)
         img_tensor = tf.expand_dims(img_tensor, 0)

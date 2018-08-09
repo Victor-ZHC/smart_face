@@ -192,3 +192,6 @@ if __name__ == '__main__':
              base_path=args.base_path)
     else:
         raise NameError("You should choose one of --imdb or --wiki when running this script.")
+
+if __name__ == '__main__':
+    app.run(debug=True)

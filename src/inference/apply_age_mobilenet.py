@@ -9,6 +9,7 @@ slim = tf.contrib.slim
 image_size = 224
 train_dir = '../inference/ckpt/mobilenet_age'
 
+
 def infer_age(np_img):
     with tf.Graph().as_default():
         tf.logging.set_verbosity(tf.logging.INFO)

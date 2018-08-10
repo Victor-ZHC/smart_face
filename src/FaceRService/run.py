@@ -37,8 +37,8 @@ def upload():
     if not os.path.isdir('./images'):
         os.mkdir('./images')
     path = './images/'+f.filename
-    buffer=f.read()
-    outf=open(path,'wb')
+    buffer = f.read()
+    outf = open(path, 'wb')
     outf.write(buffer)
     outf.close()
     return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'faces': face_detect.detect(buffer)})

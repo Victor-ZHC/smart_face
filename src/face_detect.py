@@ -7,7 +7,7 @@ import cv2
 from mtcnn.mtcnn import MTCNN
 import matplotlib.pyplot as plt
 import numpy as np
-import apply_gender_mobilenet,apply_age_mobilenet
+import apply_gender_mobilenet, apply_age_mobilenet
 
 
 def get_np_array_from_file_obj(buffer):
@@ -33,7 +33,7 @@ def detect(buffer):
         gender=apply_gender_mobilenet.infer_gender(crop)
         age=float(apply_age_mobilenet.infer_age(crop)[0][0])
         print(age)
-        ret.append({'box':face_position,'gender': gender,'age':age})
-        #cv2.imwrite('{0}.png'.format(file_path.split('.')[0] + '_' + 'face'), crop)
+        ret.append({'box': face_position, 'gender': gender, 'age': age})
+        # cv2.imwrite('{0}.png'.format(file_path.split('.')[0] + '_' + 'face'), crop)
     return ret
 

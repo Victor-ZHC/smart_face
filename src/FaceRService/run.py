@@ -41,7 +41,7 @@ def upload():
     outf=open(path,'wb')
     outf.write(buffer)
     outf.close()
-    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'res':face_detect.detect(buffer)})
+    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'faces': face_detect.detect(buffer)})
     #return jsonify(face_detect.detect(f))
 
 

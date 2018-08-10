@@ -16,6 +16,7 @@ def get_np_array_from_file_obj(buffer):
         bytearray(buffer)
         , dtype=np.uint8)
 
+
 def detect(buffer):
     detector = MTCNN()
     image = cv2.imdecode(

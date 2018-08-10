@@ -3,7 +3,7 @@ import Router from 'vue-router'
 //  import HelloWorld from '@/components/HelloWorld'
 
 const routerOptions = [
-  { path: '/', component: 'Smartface' },
+  { path: '/', component: 'Home' },
   { path: '/smartface', component: 'Smartface' }
 ]
 

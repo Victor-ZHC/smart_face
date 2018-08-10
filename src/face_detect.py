@@ -5,7 +5,6 @@ sys.path.insert(0,inference_path)
 
 import cv2
 from mtcnn.mtcnn import MTCNN
-import matplotlib.pyplot as plt
 import numpy as np
 import apply_gender_mobilenet, apply_age_mobilenet
 

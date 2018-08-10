@@ -1,8 +1,5 @@
 <template>
   <div id="app">
-    <Icon type="ios-people-outline" size="50"/>
-    <h1>Face Detection</h1>
-    <Divider />
     <router-view/>
   </div>
 </template>

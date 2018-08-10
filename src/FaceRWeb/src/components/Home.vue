@@ -1,5 +1,7 @@
 <template>
   <div>
+    <h1><Icon type="ios-people-outline" size="40"/>Smart Face</h1>
+    <Divider />
     <div class="demo-upload-list" v-for="item in uploadList">
       <p>Gender: {{item.gender}}     Age: {{item.age}}</p>
       <template v-if="item.status === 'finished'">
@@ -13,8 +15,10 @@
         <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
       </template>
     </div>
+
     <Upload
       ref="upload"
+      :show-upload-list="false"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
       :max-size="2048"
@@ -24,14 +28,15 @@
       multiple
       type="drag"
       action="http://localhost:5000/upload"
-      style="display: inline-block;width:255px;">
-      <div style="width:255px;height:255px;line-height: 255px;">
+      style="display: inline-block">
+      <div style="width:30px; height:30px; line-height:30px;">
         <Icon type="ios-camera" size="30"></Icon>
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
       <img :src="'http://localhost:5000/images/' + imgName " v-if="visible" style="width: 100%">
     </Modal>
+
   </div>
 </template>
 <script>

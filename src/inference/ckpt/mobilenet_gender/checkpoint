@@ -1,3 +1,3 @@
-model_checkpoint_path: "C:/Users/junlozhang/PycharmProjects/wiki-face/ckpt/mobilenet_gender\\model.ckpt-20"
-all_model_checkpoint_paths: "C:/Users/junlozhang/PycharmProjects/wiki-face/ckpt/mobilenet_gender\\model.ckpt-0"
-all_model_checkpoint_paths: "C:/Users/junlozhang/PycharmProjects/wiki-face/ckpt/mobilenet_gender\\model.ckpt-20"
+model_checkpoint_path: "model.ckpt-20"
+all_model_checkpoint_paths: "model.ckpt-0"
+all_model_checkpoint_paths: "model.ckpt-20"

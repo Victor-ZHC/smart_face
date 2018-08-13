@@ -1,8 +1,3 @@
-import os,sys,inspect
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-inference_path = os.path.join(currentdir,"inference")
-sys.path.insert(0,inference_path) 
-
 import cv2
 from mtcnn.mtcnn import MTCNN
 import numpy as np

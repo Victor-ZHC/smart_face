@@ -120,3 +120,6 @@ images/
 *.ntvs*
 *.njsproj
 *.sln
+
+data/
+model/

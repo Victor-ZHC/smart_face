@@ -28,3 +28,6 @@ cd ..
 # serve back-end at localhost:5000
 FLASK_APP=run.py flask run
 ```
+
+# train
+download model at [here](http://101.44.1.126/files/A106000004284D7D/ufpr.dl.sourceforge.net/project/dclib/dlib/v18.10/shape_predictor_68_face_landmarks.dat.bz2)

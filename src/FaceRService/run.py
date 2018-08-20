@@ -1,6 +1,6 @@
 import os,sys,inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-parentdir = os.path.dirname(currentdir)
+parentdir = os.path.join(os.path.dirname(currentdir),'inference')
 sys.path.insert(0,parentdir) 
 
 
@@ -38,10 +38,10 @@ def upload():
         os.mkdir('./images')
     path = './images/'+f.filename
     buffer = f.read()
-    outf = open(path, 'wb')
-    outf.write(buffer)
-    outf.close()
-    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'faces': face_detect.detect(buffer)})
+    #outf = open(path, 'wb')
+    #outf.write(buffer)
+    #outf.close()
+    return jsonify({'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'faces': face_detect.detect(buffer,path)})
     #return jsonify(face_detect.detect(f))
 
 

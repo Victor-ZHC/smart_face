@@ -4,7 +4,7 @@ import Router from 'vue-router'
 
 const routerOptions = [
   { path: '/', component: 'Home' },
-  { path: '/smartface', component: 'Smartface' }
+  { path: '/camera', component: 'Camera'}
 ]
 
 //  Vue.use(Router)

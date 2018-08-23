@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h1><Icon type="ios-people-outline" size="40"/>Smart Face</h1>
-    <Divider />
+  <div style="position: relative; text-align: center;">
+
     <div class="demo-upload-list" v-for="item in uploadList">
-      <p>Gender: {{item.gender}}     Age: {{item.age}}</p>
       <template v-if="item.status === 'finished'">
         <img :src="item.url">
         <div class="demo-upload-list-cover">
@@ -15,10 +13,10 @@
         <Progress v-if="item.showProgress" :percent="item.percentage" hide-info></Progress>
       </template>
     </div>
+    <br/>
 
     <Upload
       ref="upload"
-      :show-upload-list="false"
       :on-success="handleSuccess"
       :format="['jpg','jpeg','png']"
       :max-size="2048"
@@ -29,8 +27,9 @@
       type="drag"
       action="http://localhost:5000/upload"
       style="display: inline-block">
-      <div style="width:30px; height:30px; line-height:30px;">
-        <Icon type="ios-camera" size="30"></Icon>
+      <div style="padding: 20px 0">
+        <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
+        <p>Click or drag image here to detect face</p>
       </div>
     </Upload>
     <Modal title="View Image" v-model="visible">
@@ -96,8 +95,7 @@ export default {
 <style>
   .demo-upload-list{
     display: inline-block;
-    width: 300px;
-    height: 330px;
+
     text-align: center;
     line-height: 60px;
     border: 1px solid transparent;
@@ -106,11 +104,11 @@ export default {
     background: #fff;
     position: relative;
     box-shadow: 0 1px 1px rgba(0,0,0,.2);
-    margin-right: 4px;
+    margin-right: 0px;
   }
   .demo-upload-list img{
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: 50%;
   }
   .demo-upload-list-cover{
     display: none;

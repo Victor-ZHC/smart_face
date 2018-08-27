@@ -38,7 +38,7 @@ def upload():
     path = './images/'+f.filename
     buffer = f.read()
     return jsonify(
-        {'code': 0, 'url': 'http://10.225.226.39:5000/images/'+f.filename, 'faces': face_detect.detect(buffer, path)})
+        {'code': 0, 'url': 'http://localhost:5000/images/'+f.filename, 'faces': face_detect.detect(buffer, path)})
 
 
 @app.route("/camera", methods=['post', 'get'])
@@ -66,7 +66,7 @@ def camera():
     # print(request)
     # f = request.values.get('photo')
     # print("================request: "+f+"===============")
-    return jsonify({'url': 'http://10.225.226.39:5000/images/'+salt+'.jpg'})
+    return jsonify({'url': 'http://localhost:5000/images/'+salt+'.jpg'})
 
 
 @app.route('/images/<filename>', methods=['GET'])

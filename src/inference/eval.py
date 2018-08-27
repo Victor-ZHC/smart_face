@@ -2,7 +2,7 @@ import argparse
 import os
 
 import cv2
-import dlib
+#import dlib
 # import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
@@ -11,10 +11,11 @@ from imutils.face_utils import rect_to_bb
 import math
 
 import inception_resnet_v1
+import os
 
 image_path = 'demo.jpg'
-model_path = './ckpt'
-shape_detector = 'shape_predictor_68_face_landmarks.dat'
+model_path = os.path.join(os.path.dirname(__file__),"ckpt")
+shape_detector = os.path.join(os.path.dirname(__file__),'shape_predictor_68_face_landmarks.dat')
 
 print('start...')
 with tf.Graph().as_default():
@@ -46,11 +47,12 @@ def eval(aligned_images, model_path):
         return sess.run([age, gender], feed_dict={images_pl: aligned_images, train_mode: False})
 
 
-def load_image(image_path, shape_predictor):
+def load_image(image, shape_predictor):
     detector = dlib.get_frontal_face_detector()
     predictor = dlib.shape_predictor(shape_predictor)
     fa = FaceAligner(predictor, desiredFaceWidth=160)
-    image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+    image=image.copy()
+    #image = cv2.imread(image_path, cv2.IMREAD_COLOR)
     # image = imutils.resize(image, width=256)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     rects = detector(gray, 2)
@@ -87,9 +89,10 @@ def draw_label(image, point, ages, genders,font=cv2.FONT_HERSHEY_SIMPLEX,
         cv2.putText(image, label, point[i], font, font_scale, (255, 255, 255), thickness)
 
 
-def inference(image_path):
-    aligned_image, image, rect_nums, XY = load_image(image_path, shape_detector)
-    ages, genders = eval(aligned_image, model_path)
+def inference(image):
+    #aligned_image, image, rect_nums, XY = load_image(image, shape_detector)
+    image=cv2.resize(image,(160,160))
+    ages, genders = eval([image], model_path)
     age = math.floor(ages[0])
     gender = 'F' if genders[0] == 0 else 'M'
     return age, gender

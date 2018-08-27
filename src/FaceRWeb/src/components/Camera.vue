@@ -99,7 +99,7 @@ export default {
       )
       // this.$axios({
       //   method: 'post',
-      //   url: 'http://localhost:5000/camera',
+      //   url: 'http://10.225.226.39:5000/camera',
       //   data: postData
       // }).then(function (response) {
       //   this.$refs.img.src = response.url

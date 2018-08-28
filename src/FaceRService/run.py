@@ -5,7 +5,10 @@ import inspect
 import base64
 import sys
 import os
-import face_detect
+try:
+    import face_detect
+except:
+    from . import face_detect
 import random
 import string
 from PIL import Image

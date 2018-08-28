@@ -85,54 +85,15 @@ export default {
     },
     surePhoto () {
       console.log(this.dataURL)
-      // this.downloadFile('ship.png', this.dataURL)
-      let postData = this.$qs.stringify({
-        photo: this.dataURL.substring(22)
-      })
-
-      // test
       this.$axios.post('http://localhost:5000/camera', {
         photo: this.dataURL.substring(22)
       }).then(
         resp => this.$refs.img.src = resp.data.url,
         err => console.log(err)
       )
-      // this.$axios({
-      //   method: 'post',
-      //   url: 'http://10.225.226.39:5000/camera',
-      //   data: postData
-      // }).then(function (response) {
-      //   this.$refs.img.src = response.url
-      //   this.$Message.success('Wait for detect...')
-      //   console.log(response)
-      // }).catch(function (error) {
-      //   console.log(error)
-      // })
     },
     stopPhoto () {
       this.track.stop()
-    },
-    base64Img2Blob (code) {
-      var parts = code.split(';base64,')
-      var contentType = parts[0].split(':')[1]
-      var raw = window.atob(parts[1])
-      var rawLength = raw.length
-      var uInt8Array = new Uint8Array(rawLength)
-
-      for (var i = 0; i < rawLength; ++i) {
-        uInt8Array[i] = raw.charCodeAt(i)
-      }
-
-      return new Blob([uInt8Array], {type: contentType})
-    },
-    downloadFile (fileName, content) {
-      var aLink = document.createElement('a')
-      var blob = this.base64Img2Blob(content)
-      var evt = document.createEvent('HTMLEvents')
-      evt.initEvent('click', false, false)
-      aLink.download = fileName
-      aLink.href = URL.createObjectURL(blob)
-      aLink.dispatchEvent(evt)
     }
   },
   destroyed () {

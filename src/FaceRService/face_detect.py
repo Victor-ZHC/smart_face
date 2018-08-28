@@ -7,8 +7,7 @@ currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 parentdir = os.path.join(os.path.dirname(currentdir), 'inference')
 sys.path.insert(0, parentdir)
 
-import apply_gender_mobilenet
-import apply_age_mobilenet
+import eval
 
 detector = MTCNN()
 
@@ -50,16 +49,12 @@ def detect(buffer,path):
         print(face_position)
         crop = image[face_position[1]:face_position[1] + face_position[3],
                        face_position[0]: face_position[0] + face_position[2]]
-        gender = apply_gender_mobilenet.infer_gender(crop)
-        age = float(apply_age_mobilenet.infer_age(crop)[0][0])
+        age,gender = eval.inference(crop)
         #print(age)
         ret.append({'box': face_position, 'gender': gender, 'age': age})
-        simple_gender='F'
-        if gender=="male":
-            simple_gender="M"
         cv2.rectangle(outimage, (face_position[0], face_position[1]), 
             (face_position[0] + face_position[2], face_position[1] + face_position[3]), (255,0,0), 2)
-        print_text(outimage,(face_position[0], face_position[1]),"%.0f %s" % (age,simple_gender))
+        print_text(outimage,(face_position[0], face_position[1]),"%.0f %s" % (age,gender))
         idx+=1        
         # cv2.imwrite('{0}.png'.format(file_path.split('.')[0] + '_' + 'face'), crop)
     cv2.imwrite(path,outimage)
@@ -67,7 +62,7 @@ def detect(buffer,path):
 
 
 if __name__ == "__main__":
-    f=open("images/1.jpg",'rb')
+    f=open("1.png",'rb')
     buf=f.read()
-    detect(buf,"out.png")
+    print(detect(buf,"out.png"))
 
